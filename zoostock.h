@@ -3,7 +3,7 @@
 
 #include "zooobject.h"
 
-
+#include <QDebug>
 
 class ZooStock : public ZooObject
 {
@@ -14,6 +14,7 @@ public:
     double addQuantity(double amount);
     bool removeQuantity(double amount);
     void setQuantity(double value);
+    void test();
 };
 
 #endif // ZOOSTOCK_H

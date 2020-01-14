@@ -1,4 +1,5 @@
 #include "zoomessages.h"
+#include <QDebug>
 
 QVector<ZooMessage *> ZooMessages::getMessages() const
 {
@@ -33,7 +34,7 @@ QString ZooMessages::getLastMessage() const
     return messages.last()->getMessage();
 }
 
-ZooMessages::ZooMessages():ZooObject("ZooMessages")
+ZooMessages::ZooMessages():ZooObject("Mes logs")
 {
 
 }
@@ -42,5 +43,14 @@ void ZooMessages::addMessage(ZooMessage *zooMessage)
 {
     messages.push_back(zooMessage);
 }
+
+ZooMessages::~ZooMessages(){
+    qDebug() << Q_FUNC_INFO << getName();
+    for(int i = 0; i < getMessages().size(); i++){
+        qDebug() << Q_FUNC_INFO << getMessages().at(i)->getName();
+        delete getMessages().at(i);
+    }
+}
+
 
 

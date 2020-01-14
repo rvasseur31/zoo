@@ -17,14 +17,14 @@ ZooBudget::~ZooBudget()
 
 }
 
-int ZooBudget::addMoney(int amount)
+double ZooBudget::addMoney(double amount)
 {
     money += amount;
     Zoo::getInstance()->getLog()->addMessage(new ZooMessage(ZooErrorLevel::INFO, "Vous venez d'ajouter " + QString::number(amount) + " €", this));
     return money;
 }
 
-bool ZooBudget::removeMoney(int amount)
+bool ZooBudget::removeMoney(double amount)
 {
     if(money < amount){
         Zoo::getInstance()->getLog()->addMessage(new ZooMessage(ZooErrorLevel::ERROR, "Vous ne pouvez pas retirer " + QString::number(amount) + " €", this));
@@ -35,12 +35,12 @@ bool ZooBudget::removeMoney(int amount)
     return true;
 }
 
-int ZooBudget::getMoney()
+double ZooBudget::getMoney()
 {
     return money;
 }
 
-void ZooBudget::setMoney(int value)
+void ZooBudget::setMoney(double value)
 {
     money = value;
 }
@@ -49,17 +49,17 @@ void ZooBudget::setMoney(int value)
 void ZooBudget::testMe()
 {
     addMoney(500);
-    if(getMoney() != 500){
+    if(getMoney() != 500.0){
         qDebug() << "Budget erroné 1";
     }
     removeMoney(50);
-    if(getMoney() != 450){
+    if(getMoney() != 450.0){
         qDebug() << "Budget erroné 2";
     }
-    if(!removeMoney(1000)){
+    if(!removeMoney(1000.0)){
         qDebug() << "Crédit insuffisant";
     }
-    if(getMoney() != 450){
+    if(getMoney() != 450.0){
         qDebug() << "Budget erroné 3";
     }
 }

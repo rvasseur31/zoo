@@ -1,8 +1,9 @@
 #ifndef ZOOMESSAGES_H
 #define ZOOMESSAGES_H
 
-#include "zoomessage.h"
 #include "zooobject.h"
+#include "zoomessage.h"
+
 #include <QVector>
 
 class ZooMessages : public ZooObject

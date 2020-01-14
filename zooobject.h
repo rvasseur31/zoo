@@ -3,8 +3,6 @@
 
 #include <QString>
 
-
-
 class ZooObject
 {
     QString name;

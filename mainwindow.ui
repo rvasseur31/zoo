@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>1296</width>
+    <height>704</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -291,17 +291,63 @@
      <string>- 30 kg</string>
     </property>
    </widget>
-   <widget class="QLabel" name="labelMessageLog">
+   <widget class="QListView" name="listViewLogs">
+    <property name="geometry">
+     <rect>
+      <x>995</x>
+      <y>0</y>
+      <width>301</width>
+      <height>631</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableViewHabitat">
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>489</y>
-      <width>801</width>
-      <height>51</height>
+      <y>290</y>
+      <width>721</width>
+      <height>301</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonAddHabitat">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>590</y>
+      <width>161</width>
+      <height>34</height>
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>Ajout d'un habitat</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonSellHabitat">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>590</y>
+      <width>161</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Vendre un habitat</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButtonDestroyHabitat">
+    <property name="geometry">
+     <rect>
+      <x>560</x>
+      <y>590</y>
+      <width>161</width>
+      <height>34</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Détruire un habitat</string>
     </property>
    </widget>
   </widget>
@@ -310,7 +356,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>1296</width>
      <height>30</height>
     </rect>
    </property>

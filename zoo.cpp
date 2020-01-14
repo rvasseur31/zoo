@@ -1,5 +1,4 @@
 #include "zoo.h"
-#include <QDebug>
 
 Zoo *Zoo::m_zoo = nullptr;
 
@@ -7,6 +6,7 @@ Zoo::Zoo(const QString &name)
     : ZooObject(name)
     , m_budget(ZooBudget::getInstance())
     , log(new ZooMessages())
+    , habitats(Habitats::getInstance())
 {
     qDebug() << Q_FUNC_INFO << getName();
     stockList["seed"] = new ZooStock("seed", 12.5);
@@ -23,6 +23,11 @@ ZooMessages *Zoo::getLog() const
     return log;
 }
 
+Habitats *Zoo::getHabitats() const
+{
+    return habitats;
+}
+
 Zoo *Zoo::getInstance(const QString &name)
 {
     if(m_zoo == nullptr) {
@@ -33,7 +38,7 @@ Zoo *Zoo::getInstance(const QString &name)
 
 Zoo::~Zoo()
 {
-    qDebug() << Q_FUNC_INFO;
+    qDebug() << Q_FUNC_INFO << getName();
     delete m_budget;
 
     Stocklist::iterator i;
@@ -42,44 +47,54 @@ Zoo::~Zoo()
         delete i.value();
     }
 
-    for(int i = 0; i < getLog()->getMessages().size(); i++){
-        qDebug() << Q_FUNC_INFO << getLog()->getMessages().at(i)->getName();
-        delete getLog()->getMessages().at(i);
-    }
+    delete log;
+    delete habitats;
 }
 
-int Zoo::addMoney(int amount)
+double Zoo::addMoney(double amount)
 {
     return m_budget->addMoney(amount);
 }
 
-bool Zoo::removeMoney(int amount)
+bool Zoo::removeMoney(double amount)
 {
     return m_budget->removeMoney(amount);
 }
 
-int Zoo::getMoney()
+double Zoo::getMoney()
 {
     return m_budget->getMoney();
 }
 
-//void Zoo::testStock()
-//{
-//    qDebug() << "Meat stock: " << getMeat();
-//    qDebug() << "Seed stock: " << getSeed();
-//    if(!removeSeed(12)){
-//        qDebug() << "Seed stock error";
-//    }
-//    if(addMeat(21.5) != 71.5){
-//        qDebug() << "Meat stock error";
-//    }
-//    qDebug() << "Meat stock: " << getMeat();
-//    qDebug() << "Seed stock: " << getSeed();
-//}
-
-void Zoo::testMe()
-{
-    qDebug() << Q_FUNC_INFO << getName();
-    m_budget->testMe();
-//    testStock();
+QVector<Habitat *> Zoo::getHabitatListByHabitatType(AnimalType animalType){
+    return habitats->getHabitatListByHabitatType(animalType);
 }
+
+bool Zoo::buyHabitat(AnimalType animalType){
+    return habitats->buyHabitat(animalType);
+}
+
+bool Zoo::sellHabitat(Habitat *habitat){
+    return habitats->sellHabitat(habitat);
+}
+
+bool Zoo::destroyHabitat(Habitat *habitat){
+    return habitats->destroyHabitat(habitat);
+}
+
+void Zoo::testHabitat(){
+    buyHabitat(AnimalType::AIGLE);
+    buyHabitat(AnimalType::AIGLE);
+    buyHabitat(AnimalType::AIGLE);
+    QVector<Habitat *> habitatList = getHabitatListByHabitatType(AnimalType::AIGLE);
+    for (int i = 0; i < habitatList.length(); i++) {
+        qDebug() << Q_FUNC_INFO << i+1;
+    }
+}
+
+//void Zoo::testMe()
+//{
+//    qDebug() << Q_FUNC_INFO << getName();
+//    m_budget->testMe();
+//    testStock();
+//}

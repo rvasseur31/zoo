@@ -10,14 +10,13 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     Zoo *zoo = Zoo::getInstance("ZooTycoon");
+    zoo->addMoney(4000.0);
     ui->lbl_zooName->setText(zoo->getName());
     setEditMode(false);
 
     ui->lineEdit_zooName->move(ui->lbl_zooName->pos());
     ui->btn_validateZooName->move(ui->btn_updateZooName->pos());
-    zoo->testMe();
-    updateBudgetDisplay();
-    updateStockDisplay();
+    updateDisplay();
 }
 
 MainWindow::~MainWindow()
@@ -67,6 +66,7 @@ void MainWindow::updateDisplay(){
     updateStockDisplay();
     updateBudgetDisplay();
     updateMessageDisplay();
+    updateHabitatDisplay();
 }
 
 void MainWindow::updateBudgetDisplay()
@@ -74,9 +74,19 @@ void MainWindow::updateBudgetDisplay()
     ui->lbl_budget->setText(QString::number(Zoo::getInstance()->getMoney()));
 }
 
+QStringListModel* MainWindow::getLogsForListView() {
+    QStringListModel *model = new QStringListModel();
+    QStringList list;
+    for (int index = Zoo::getInstance()->getLog()->getMessages().size()-1; index >= 0; --index) {
+        list.append(Zoo::getInstance()->getLog()->getMessages().at(index)->getMessage());
+    }
+    model->setStringList(list);
+    return model;
+}
+
 void MainWindow::updateMessageDisplay(){
     if (Zoo::getInstance()->getLog()->getMessages().size() != 0){
-        ui->labelMessageLog->setText(Zoo::getInstance()->getLog()->getLastMessage());
+        ui->listViewLogs->setModel(getLogsForListView());
         switch (Zoo::getInstance()->getLog()->getMessages().last()->getErrorLevel()) {
             case ZooErrorLevel::ERROR:
                 QMessageBox::information(this, "", Zoo::getInstance()->getLog()->getMessages().last()->getMessage());
@@ -95,7 +105,25 @@ void MainWindow::updateMessageDisplay(){
                 break;
         }
     }
+}
 
+void MainWindow::getHabitatsForListView() {
+
+}
+
+void MainWindow::updateHabitatDisplay(){
+    int numberOfHabitat = Zoo::getInstance()->getHabitats()->getHabitatList().size();
+    ui->tableViewHabitat->setRowCount(numberOfHabitat);
+    ui->tableViewHabitat->setColumnCount(4);
+    QStringList m_TableHeader;
+    m_TableHeader<<"Type d'habitat"<<"Nom"<<"Capacité total"<<"Nombre d'animaux";
+    ui->tableViewHabitat->setHorizontalHeaderLabels(m_TableHeader);
+    for (int row = 0; row < numberOfHabitat; ++row) {
+        ui->tableViewHabitat->setItem(row, 0, new QTableWidgetItem(Zoo::getInstance()->getHabitats()->getHabitatList().at(row)->getHabitatTypeToString()));
+        ui->tableViewHabitat->setItem(row, 1, new QTableWidgetItem(Zoo::getInstance()->getHabitats()->getHabitatList().at(row)->getName()));
+        ui->tableViewHabitat->setItem(row, 2, new QTableWidgetItem(QString::number(Zoo::getInstance()->getHabitats()->getHabitatList().at(row)->getCapacity())));
+        ui->tableViewHabitat->setItem(row, 3, new QTableWidgetItem(QString::number(Zoo::getInstance()->getHabitats()->getHabitatList().at(row)->getAnimalNumber())));
+    }
 }
 
 void MainWindow::updateStockDisplay()
@@ -126,14 +154,14 @@ void MainWindow::on_pushButtonAddMeat_clicked()
 {
  Zoo *zoo = Zoo::getInstance();
  zoo->getStockList()["meat"]->addQuantity(50);
- updateStockDisplay();
+ updateDisplay();
 }
 
 void MainWindow::on_pushButtonRemoveMeat_clicked()
 {
     Zoo *zoo = Zoo::getInstance();
     zoo->getStockList()["meat"]->removeQuantity(30);
-    updateStockDisplay();
+    updateDisplay();
 
 }
 
@@ -141,12 +169,33 @@ void MainWindow::on_pushButtonAddSeed_clicked()
 {
     Zoo *zoo = Zoo::getInstance();
     zoo->getStockList()["seed"]->addQuantity(50);
-    updateStockDisplay();
+    updateDisplay();
 }
 
 void MainWindow::on_pushButtonRemoveSeed_clicked()
 {
     Zoo *zoo = Zoo::getInstance();
     zoo->getStockList()["seed"]->removeQuantity(30);
-    updateStockDisplay();
+    updateDisplay();
+}
+
+void MainWindow::on_pushButtonAddHabitat_clicked() {
+    Zoo::getInstance()->buyHabitat(AnimalType::AIGLE);
+    updateDisplay();
+}
+
+void MainWindow::on_pushButtonSellHabitat_clicked()
+{
+    Zoo *zoo = Zoo::getInstance();
+    Habitat *habitat = zoo->getHabitats()->getHabitatList().at(0);
+    Zoo::getInstance()->sellHabitat(habitat);
+    updateDisplay();
+}
+
+void MainWindow::on_pushButtonDestroyHabitat_clicked()
+{
+    Zoo *zoo = Zoo::getInstance();
+    Habitat *habitat = zoo->getHabitats()->getHabitatList().at(0);
+    Zoo::getInstance()->destroyHabitat(habitat);
+    updateDisplay();
 }

@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QStringListModel>
+#include <QStandardItemModel>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -33,6 +35,12 @@ private slots:
 
     void on_pushButtonRemoveSeed_clicked();
 
+    void on_pushButtonAddHabitat_clicked();
+
+    void on_pushButtonSellHabitat_clicked();
+
+    void on_pushButtonDestroyHabitat_clicked();
+
 private:
     Ui::MainWindow *ui;
     void setEditMode(bool editMode);
@@ -40,5 +48,8 @@ private:
     void updateStockDisplay();
     void updateDisplay();
     void updateMessageDisplay();
+    QStringListModel *getLogsForListView();
+    void getHabitatsForListView();
+    void updateHabitatDisplay();
 };
 #endif // MAINWINDOW_H

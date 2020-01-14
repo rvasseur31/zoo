@@ -16,8 +16,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    aigle.cpp \
+    animal.cpp \
+    animals.cpp \
+    habitat.cpp \
+    habitataigle.cpp \
+    habitatpoule.cpp \
+    habitats.cpp \
+    habitattigre.cpp \
     main.cpp \
     mainwindow.cpp \
+    poule.cpp \
+    tigre.cpp \
     zoo.cpp \
     zoobudget.cpp \
     zoomessage.cpp \
@@ -26,7 +36,19 @@ SOURCES += \
     zoostock.cpp
 
 HEADERS += \
+    AnimalType.h \
+    FoodType.h \
+    aigle.h \
+    animal.h \
+    animals.h \
+    habitat.h \
+    habitataigle.h \
+    habitatpoule.h \
+    habitats.h \
+    habitattigre.h \
     mainwindow.h \
+    poule.h \
+    tigre.h \
     zoo.h \
     zoobudget.h \
     zoomessage.h \

@@ -13,11 +13,11 @@ void ZooObject::setName(const QString &value)
 
 ZooObject::ZooObject(const QString &name)
 {
-    qDebug() << Q_FUNC_INFO;
+    qDebug() << Q_FUNC_INFO << name;
     setName(name);
 }
 
 ZooObject::~ZooObject()
 {
-    qDebug() << Q_FUNC_INFO;
+    qDebug() << Q_FUNC_INFO << getName();
 }
