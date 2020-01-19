@@ -6,5 +6,5 @@ HabitatTigre::HabitatTigre(Habitats *parent)
     setSellPrice(500.0);
     setCapacity(2);
     setRelatedLossOvercrowding(1);
-    setHabitatType(AnimalType::TIGRE);
+    setHabitatType(AnimalTypeEnum::TIGRE);
 }

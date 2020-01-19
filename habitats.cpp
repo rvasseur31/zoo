@@ -3,9 +3,10 @@
 #include <QDebug>
 
 
+
 Habitats *Habitats::instanceHabitats = nullptr;
 
-QVector<Habitat *> Habitats::getHabitatList() const
+qVectorHabitatPtr& Habitats::getHabitatList()
 {
     return habitatList;
 }
@@ -29,7 +30,7 @@ Habitats::~Habitats() {
     }
 }
 
-QVector<Habitat *> Habitats::getHabitatListByHabitatType(AnimalType animalType) const{
+qVectorHabitatPtr Habitats::getHabitatListByHabitatType(AnimalTypeEnum animalType) const{
     QVector<Habitat *> habitatListToReturn;
     for(int i = 0; i < habitatList.length(); i++){
         if (habitatList.at(i)->getHabitatType() == animalType){
@@ -39,12 +40,12 @@ QVector<Habitat *> Habitats::getHabitatListByHabitatType(AnimalType animalType) 
     return habitatListToReturn;
 }
 
-bool Habitats::buyHabitat(AnimalType animalType){
+bool Habitats::buyHabitat(AnimalTypeEnum animalType){
     Habitat *habitat = nullptr;
-    if (animalType == AnimalType::AIGLE){
+    if (animalType == AnimalTypeEnum::AIGLE){
         habitat = new HabitatAigle(this);
     }
-    else if (animalType == AnimalType::POULE){
+    else if (animalType == AnimalTypeEnum::POULE){
         habitat = new HabitatPoule(this);
     }
     else{
@@ -57,22 +58,22 @@ bool Habitats::buyHabitat(AnimalType animalType){
     return false;
 }
 
+bool Habitats::removeHabitat(Habitat* habitat) {
+    for(int i = 0; i < getHabitatList().size(); i++){
+        Habitat* current = getHabitatList().at(i);
+        if (current == habitat) {
+            getHabitatList().erase(getHabitatList().begin() + i);
+            return true;
+        }
+    }
+    return false;
+}
+
 bool Habitats::sellHabitat(Habitat* habitat){
     if (removeHabitat(habitat)){
         Zoo::getInstance()->getLog()->addMessage(new ZooMessage(ZooErrorLevel::INFO, "Vous venez de vendre un habitat", this));
         Zoo::getInstance()->addMoney(habitat->getSellPrice());
         return true;
-    }
-    return false;
-}
-
-bool Habitats::removeHabitat(Habitat* habitat) {
-    for(int i = 0; i < getHabitatList().size(); i++){
-        if (getHabitatList().at(i) == habitat) {
-            // TODO: Remove the habitat from the QVector
-            qDebug() << getHabitatList().size();
-            return true;
-        }
     }
     return false;
 }

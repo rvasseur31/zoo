@@ -2,7 +2,7 @@
 #define ANIMALS_H
 
 #include "zooobject.h"
-#include "AnimalType.h"
+#include "animaltype.h"
 #include "poule.h"
 #include "tigre.h"
 #include "aigle.h"
@@ -24,7 +24,7 @@ public:
     Habitat *getParent() const;
     void setParent(Habitat *value);
     QVector<Animal *> getAnimalList() const;
-    bool buyAnimal(AnimalType animalType);
+    bool buyAnimal(AnimalTypeEnum animalType);
     bool sellAnimal(Animal *animal);
     bool killAnimal(Animal *animal);
 };

@@ -19,6 +19,7 @@ SOURCES += \
     aigle.cpp \
     animal.cpp \
     animals.cpp \
+    animaltype.cpp \
     habitat.cpp \
     habitataigle.cpp \
     habitatpoule.cpp \
@@ -36,11 +37,12 @@ SOURCES += \
     zoostock.cpp
 
 HEADERS += \
-    AnimalType.h \
     FoodType.h \
     aigle.h \
     animal.h \
     animals.h \
+    animaltype.h \
+    animaltype.h \
     habitat.h \
     habitataigle.h \
     habitatpoule.h \

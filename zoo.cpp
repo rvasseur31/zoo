@@ -66,11 +66,11 @@ double Zoo::getMoney()
     return m_budget->getMoney();
 }
 
-QVector<Habitat *> Zoo::getHabitatListByHabitatType(AnimalType animalType){
+QVector<Habitat *> Zoo::getHabitatListByHabitatType(AnimalTypeEnum animalType){
     return habitats->getHabitatListByHabitatType(animalType);
 }
 
-bool Zoo::buyHabitat(AnimalType animalType){
+bool Zoo::buyHabitat(AnimalTypeEnum animalType){
     return habitats->buyHabitat(animalType);
 }
 
@@ -83,10 +83,10 @@ bool Zoo::destroyHabitat(Habitat *habitat){
 }
 
 void Zoo::testHabitat(){
-    buyHabitat(AnimalType::AIGLE);
-    buyHabitat(AnimalType::AIGLE);
-    buyHabitat(AnimalType::AIGLE);
-    QVector<Habitat *> habitatList = getHabitatListByHabitatType(AnimalType::AIGLE);
+    buyHabitat(AnimalTypeEnum::AIGLE);
+    buyHabitat(AnimalTypeEnum::AIGLE);
+    buyHabitat(AnimalTypeEnum::AIGLE);
+    QVector<Habitat *> habitatList = getHabitatListByHabitatType(AnimalTypeEnum::AIGLE);
     for (int i = 0; i < habitatList.length(); i++) {
         qDebug() << Q_FUNC_INFO << i+1;
     }

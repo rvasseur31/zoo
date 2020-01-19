@@ -6,5 +6,5 @@ HabitatPoule::HabitatPoule(Habitats *parent)
     setSellPrice(50.0);
     setCapacity(10);
     setRelatedLossOvercrowding(4);
-    setHabitatType(AnimalType::POULE);
+    setHabitatType(AnimalTypeEnum::POULE);
 }

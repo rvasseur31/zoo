@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "zoo.h"
 #include <QDebug>
+#include <QInputDialog>
 #include <QMessageBox>
 
 MainWindow::MainWindow(QWidget *parent)
@@ -10,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     Zoo *zoo = Zoo::getInstance("ZooTycoon");
-    zoo->addMoney(4000.0);
+    zoo->addMoney(10000.0);
     ui->lbl_zooName->setText(zoo->getName());
     setEditMode(false);
 
@@ -119,7 +120,7 @@ void MainWindow::updateHabitatDisplay(){
     m_TableHeader<<"Type d'habitat"<<"Nom"<<"Capacité total"<<"Nombre d'animaux";
     ui->tableViewHabitat->setHorizontalHeaderLabels(m_TableHeader);
     for (int row = 0; row < numberOfHabitat; ++row) {
-        ui->tableViewHabitat->setItem(row, 0, new QTableWidgetItem(Zoo::getInstance()->getHabitats()->getHabitatList().at(row)->getHabitatTypeToString()));
+        ui->tableViewHabitat->setItem(row, 0, new QTableWidgetItem(AnimalType::getInstance()->getStringFromAnimalTypeEnum(Zoo::getInstance()->getHabitats()->getHabitatList().at(row)->getHabitatType())));
         ui->tableViewHabitat->setItem(row, 1, new QTableWidgetItem(Zoo::getInstance()->getHabitats()->getHabitatList().at(row)->getName()));
         ui->tableViewHabitat->setItem(row, 2, new QTableWidgetItem(QString::number(Zoo::getInstance()->getHabitats()->getHabitatList().at(row)->getCapacity())));
         ui->tableViewHabitat->setItem(row, 3, new QTableWidgetItem(QString::number(Zoo::getInstance()->getHabitats()->getHabitatList().at(row)->getAnimalNumber())));
@@ -180,22 +181,46 @@ void MainWindow::on_pushButtonRemoveSeed_clicked()
 }
 
 void MainWindow::on_pushButtonAddHabitat_clicked() {
-    Zoo::getInstance()->buyHabitat(AnimalType::AIGLE);
-    updateDisplay();
+    QStringList items = AnimalType::getInstance()->getAnimalTypeToStringList();
+    bool ok;
+    QString item = QInputDialog::getItem(this, tr("Choix de l'habitat"),
+                                         tr("Type d'habitat:"), items, 0, false, &ok);
+    if (ok && !item.isEmpty()){
+        Zoo::getInstance()->buyHabitat(AnimalType::getInstance()->getAnimalTypeEnumFromString(item));
+        updateDisplay();
+    }
 }
 
 void MainWindow::on_pushButtonSellHabitat_clicked()
 {
     Zoo *zoo = Zoo::getInstance();
-    Habitat *habitat = zoo->getHabitats()->getHabitatList().at(0);
-    Zoo::getInstance()->sellHabitat(habitat);
-    updateDisplay();
+    QStringList items;
+    for (int index = 0; index < zoo->getHabitats()->getHabitatList().size(); index ++){
+        items.append(QString::number(index+1));
+    }
+    bool ok;
+    QString item = QInputDialog::getItem(this, tr("Choix de l'habitat"),
+                                         tr("Choisir le numéro de l'habitat:"), items, 0, false, &ok);
+    if (ok && !item.isEmpty()){
+        Habitat *habitat = zoo->getHabitats()->getHabitatList().at(item.toInt() - 1);
+        zoo->sellHabitat(habitat);
+        updateDisplay();
+    }
 }
 
 void MainWindow::on_pushButtonDestroyHabitat_clicked()
 {
     Zoo *zoo = Zoo::getInstance();
-    Habitat *habitat = zoo->getHabitats()->getHabitatList().at(0);
-    Zoo::getInstance()->destroyHabitat(habitat);
-    updateDisplay();
+    QStringList items;
+    for (int index = 0; index < zoo->getHabitats()->getHabitatList().size(); index ++){
+        items.append(QString::number(index+1));
+    }
+    bool ok;
+    QString item = QInputDialog::getItem(this, tr("Choix de l'habitat"),
+                                         tr("Choisir le numéro de l'habitat:"), items, 0, false, &ok);
+    if (ok && !item.isEmpty()){
+        Habitat *habitat = zoo->getHabitats()->getHabitatList().at(item.toInt() - 1);
+        zoo->destroyHabitat(habitat);
+        updateDisplay();
+    }
 }

@@ -2,7 +2,7 @@
 #define HABITAT_H
 
 #include "zooobject.h"
-#include "AnimalType.h"
+#include "animaltype.h"
 
 #include <QVector>
 
@@ -10,7 +10,7 @@ class Animals;
 class Habitats;
 
 class Habitat : public ZooObject {
-    AnimalType habitatType;
+    AnimalTypeEnum habitatType;
     double buyPrice;
     double sellPrice;
     int capacity;
@@ -29,8 +29,8 @@ public:
     void setCapacity(int value);
     int getRelatedLossOvercrowding() const;
     void setRelatedLossOvercrowding(int value);
-    AnimalType getHabitatType() const;
-    void setHabitatType(const AnimalType &value);
+    AnimalTypeEnum getHabitatType() const;
+    void setHabitatType(const AnimalTypeEnum &value);
     Habitats *getParent() const;
     void setParent(Habitats *value);
     Animals *getAnimals() const;
@@ -38,8 +38,10 @@ public:
 
     bool isFull();
 
-    QString getHabitatTypeToString();
+
+    AnimalTypeEnum stringToAnimalType();
     int getAnimalNumber();
+    ~Habitat();
 };
 
 #endif // HABITAT_H

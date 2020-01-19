@@ -6,5 +6,5 @@ HabitatAigle::HabitatAigle(Habitats *parent)
     setSellPrice(500.0);
     setCapacity(4);
     setRelatedLossOvercrowding(1);
-    setHabitatType(AnimalType::AIGLE);
+    setHabitatType(AnimalTypeEnum::AIGLE);
 }

@@ -1,6 +1,11 @@
 #include "habitat.h"
 #include "animals.h"
 
+Habitat::~Habitat(){
+    qDebug() << __FUNCTION__;
+
+}
+
 Habitats *Habitat::getParent() const
 {
     return parent;
@@ -11,23 +16,17 @@ void Habitat::setParent(Habitats *value)
     parent = value;
 }
 
-AnimalType Habitat::getHabitatType() const
+AnimalTypeEnum Habitat::getHabitatType() const
 {
     return habitatType;
 }
 
-QString Habitat::getHabitatTypeToString(){
-    switch (getHabitatType()) {
-    case AnimalType::AIGLE:
-        return "Habitat d'aigle";
-    case AnimalType::POULE:
-        return "Habitat de poule";
-    case AnimalType::TIGRE:
-        return "Habitat de tigre";
-    }
+AnimalTypeEnum Habitat::stringToAnimalType()
+{
+    return AnimalTypeEnum::AIGLE;
 }
 
-void Habitat::setHabitatType(const AnimalType &value)
+void Habitat::setHabitatType(const AnimalTypeEnum &value)
 {
     habitatType = value;
 }

@@ -20,12 +20,12 @@ Animals::Animals(Habitat* parent)
     , parent(parent)
 {}
 
-bool Animals::buyAnimal(AnimalType animalType) {
+bool Animals::buyAnimal(AnimalTypeEnum animalType) {
     Animal *animal = nullptr;
-    if (animalType == AnimalType::AIGLE){
+    if (animalType == AnimalTypeEnum::AIGLE){
         animal = new Aigle(this);
     }
-    else if (animalType == AnimalType::POULE){
+    else if (animalType == AnimalTypeEnum::POULE){
         animal = new Poule(this);
     }
     else{

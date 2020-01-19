@@ -3,7 +3,7 @@
 
 #include "zooobject.h"
 #include "habitat.h"
-#include "AnimalType.h"
+#include "animaltype.h"
 #include "habitataigle.h"
 #include "habitatpoule.h"
 #include "habitattigre.h"
@@ -12,16 +12,23 @@
 #include <QVector>
 #include <QDebug>
 
-class Habitat;
+#include <iostream>
+#include <memory>
+
+using namespace std;
+
+class Habitat; 
+
+typedef QVector<Habitat*> qVectorHabitatPtr;
 
 class Habitats: ZooObject {
     static Habitats *instanceHabitats;
-    QVector<Habitat *> habitatList;
+    qVectorHabitatPtr habitatList;
 public:
     ~Habitats();
-    QVector<Habitat *> getHabitatList() const;
-    QVector<Habitat *> getHabitatListByHabitatType(AnimalType habitatType) const;
-    bool buyHabitat(AnimalType habitatType);
+    qVectorHabitatPtr &getHabitatList();
+    qVectorHabitatPtr getHabitatListByHabitatType(AnimalTypeEnum habitatType) const;
+    bool buyHabitat(AnimalTypeEnum habitatType);
     bool sellHabitat(Habitat* habitat);
     bool destroyHabitat(Habitat* habitat);
     static Habitats *getInstance();

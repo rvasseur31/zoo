@@ -7,7 +7,7 @@
 #include "zoostock.h"
 #include "habitats.h"
 
-#include "AnimalType.h"
+#include "animaltype.h"
 
 #include <QDebug>
 #include <QMap>
@@ -36,9 +36,9 @@ public:
     Stocklist getStockList() const;
     ZooMessages *getLog() const;
 
-    QVector<Habitat *> getHabitatListByHabitatType(AnimalType animalType);
+    QVector<Habitat *> getHabitatListByHabitatType(AnimalTypeEnum animalType);
     Habitats *getHabitats() const;
-    bool buyHabitat(AnimalType animalType);
+    bool buyHabitat(AnimalTypeEnum animalType);
     void testHabitat();
     bool sellHabitat(Habitat *habitat);
     bool destroyHabitat(Habitat *habitat);
