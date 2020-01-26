@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QStringListModel>
 #include <QStandardItemModel>
+#include <QTableWidget>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -12,10 +13,13 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
+    int currentHabitatSelected;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    int getCurrentHabitatSelected() const;
+    void setCurrentHabitatSelected(int value);
+
 private slots:
     void on_btn_updateZooName_clicked();
 
@@ -40,6 +44,8 @@ private slots:
     void on_pushButtonSellHabitat_clicked();
 
     void on_pushButtonDestroyHabitat_clicked();
+
+    void on_tableViewHabitat_cellDoubleClicked(int row);
 
 private:
     Ui::MainWindow *ui;

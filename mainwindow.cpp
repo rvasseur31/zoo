@@ -1,9 +1,20 @@
 #include "mainwindow.h"
+#include "showanimalsinhabitat.h"
 #include "ui_mainwindow.h"
 #include "zoo.h"
 #include <QDebug>
 #include <QInputDialog>
 #include <QMessageBox>
+
+int MainWindow::getCurrentHabitatSelected() const
+{
+    return currentHabitatSelected;
+}
+
+void MainWindow::setCurrentHabitatSelected(int value)
+{
+    currentHabitatSelected = value;
+}
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -119,6 +130,7 @@ void MainWindow::updateHabitatDisplay(){
     QStringList m_TableHeader;
     m_TableHeader<<"Type d'habitat"<<"Nom"<<"Capacité total"<<"Nombre d'animaux";
     ui->tableViewHabitat->setHorizontalHeaderLabels(m_TableHeader);
+    ui->tableViewHabitat->setEditTriggers(QAbstractItemView::NoEditTriggers);
     for (int row = 0; row < numberOfHabitat; ++row) {
         ui->tableViewHabitat->setItem(row, 0, new QTableWidgetItem(AnimalType::getInstance()->getStringFromAnimalTypeEnum(Zoo::getInstance()->getHabitats()->getHabitatList().at(row)->getHabitatType())));
         ui->tableViewHabitat->setItem(row, 1, new QTableWidgetItem(Zoo::getInstance()->getHabitats()->getHabitatList().at(row)->getName()));
@@ -223,4 +235,10 @@ void MainWindow::on_pushButtonDestroyHabitat_clicked()
         zoo->destroyHabitat(habitat);
         updateDisplay();
     }
+}
+
+void MainWindow::on_tableViewHabitat_cellDoubleClicked(int row) {
+    setCurrentHabitatSelected(row);
+    ShowAnimalsInHabitat animalsInHabitat(this);
+    animalsInHabitat.exec();
 }

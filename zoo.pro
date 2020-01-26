@@ -28,6 +28,8 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     poule.cpp \
+    showanimalsinhabitat.cpp \
+    templateanimal.cpp \
     tigre.cpp \
     zoo.cpp \
     zoobudget.cpp \
@@ -50,6 +52,8 @@ HEADERS += \
     habitattigre.h \
     mainwindow.h \
     poule.h \
+    showanimalsinhabitat.h \
+    templateanimal.h \
     tigre.h \
     zoo.h \
     zoobudget.h \
@@ -59,7 +63,8 @@ HEADERS += \
     zoostock.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    showanimalsinhabitat.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
