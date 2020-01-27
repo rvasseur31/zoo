@@ -10,7 +10,7 @@ template <class T>
 class TemplateAnimal : public Animal {
   public:
     static Animal* Create(){
-        Animal* animal = new T(nullptr);
+        Animal* animal = new T();
         animal->setParent(nullptr);
         return animal;
     }

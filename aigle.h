@@ -5,8 +5,14 @@
 #include "templateanimal.h"
 
 class Aigle : public TemplateAnimal<Aigle> {
+
+
 public:
-    Aigle();
+    Aigle(Animals *parent);
+
+
+
+
 };
 
 #endif // AIGLE_H

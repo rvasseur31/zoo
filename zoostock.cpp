@@ -11,9 +11,11 @@ double ZooStock::getQuantity() const
     return quantity;
 }
 
+
 void ZooStock::setQuantity(double value)
 {
     quantity = value;
+
 }
 
 double ZooStock::addQuantity(double amount)

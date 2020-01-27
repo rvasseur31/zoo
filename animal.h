@@ -38,6 +38,7 @@ public:
     void setFoodType(const FoodType &value);
     double getAmountOfFoodPerDay() const;
     void setAmountOfFoodPerDay(double value);
+
     int getDaysBeforeBeingHungry() const;
     void setDaysBeforeBeingHungry(int value);
     int getLitter() const;
