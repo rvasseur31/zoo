@@ -121,10 +121,27 @@ void Animal::setSellPrice(double value)
     sellPrice = value;
 }
 
+QString Animal::getType() const
+{
+    return type;
+}
+
+void Animal::setType(const QString &value)
+{
+    type = value;
+}
+
 Animal::Animal(Animals* parent)
     : ZooObject("Un animal de l'habitat")
     , parent(parent)
 {
+}
+
+Animal::Animal()
+    : ZooObject("Un animal de l'habitat")
+    , parent(nullptr)
+{
+
 }
 
 Habitat* Animal::getHabitat() {

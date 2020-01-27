@@ -22,15 +22,9 @@ Animals::Animals(Habitat* parent)
 
 bool Animals::buyAnimal(AnimalTypeEnum animalType) {
     Animal *animal = nullptr;
-    if (animalType == AnimalTypeEnum::AIGLE){
-        animal = new Aigle(this);
-    }
-    else if (animalType == AnimalTypeEnum::POULE){
-        animal = new Poule(this);
-    }
-    else{
-        animal = new Tigre(this);
-    }
+    animal = Vendor::getInstance()
+            ->sellAnimal(AnimalType::getInstance()->getStringFromAnimalTypeEnum(animalType));
+    animal->setParent(this);
     if (Zoo::getInstance()->removeMoney(animal->getBuyPrice())){
         animalList.push_back(animal);
         return true;

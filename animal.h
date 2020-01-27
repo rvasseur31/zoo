@@ -20,11 +20,13 @@ class Animal : public ZooObject
     int lifeExpectancy;
     double buyPrice;
     double sellPrice;
+    QString type;
 
     Animals* parent = nullptr;
 
 public:
     Animal(Animals* parent);
+    Animal();
 
     Animals *getParent() const;
     void setParent(Animals *value);
@@ -52,6 +54,8 @@ public:
     void setBuyPrice(double value);
     double getSellPrice() const;
     void setSellPrice(double value);
+    QString getType() const;
+    void setType(const QString &value);
 };
 
 #endif // ANIMAL_H

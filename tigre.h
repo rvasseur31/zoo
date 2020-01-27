@@ -2,10 +2,11 @@
 #define TIGRE_H
 
 #include "animal.h"
+#include "templateanimal.h"
 
-class Tigre : public Animal {
+class Tigre : public TemplateAnimal<Tigre> {
 public:
-    Tigre(Animals* parent);
+    Tigre();
 };
 
 #endif // TIGRE_H

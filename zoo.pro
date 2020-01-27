@@ -31,6 +31,7 @@ SOURCES += \
     showanimalsinhabitat.cpp \
     templateanimal.cpp \
     tigre.cpp \
+    vendor.cpp \
     zoo.cpp \
     zoobudget.cpp \
     zoomessage.cpp \
@@ -55,6 +56,7 @@ HEADERS += \
     showanimalsinhabitat.h \
     templateanimal.h \
     tigre.h \
+    vendor.h \
     zoo.h \
     zoobudget.h \
     zoomessage.h \

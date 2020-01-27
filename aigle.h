@@ -2,10 +2,11 @@
 #define AIGLE_H
 
 #include "animal.h"
+#include "templateanimal.h"
 
-class Aigle : public Animal {
+class Aigle : public TemplateAnimal<Aigle> {
 public:
-    Aigle(Animals* parent);
+    Aigle();
 };
 
 #endif // AIGLE_H

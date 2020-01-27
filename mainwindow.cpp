@@ -1,6 +1,10 @@
+#include "aigle.h"
 #include "mainwindow.h"
+#include "poule.h"
 #include "showanimalsinhabitat.h"
+#include "tigre.h"
 #include "ui_mainwindow.h"
+#include "vendor.h"
 #include "zoo.h"
 #include <QDebug>
 #include <QInputDialog>
@@ -21,6 +25,16 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    Vendor *vendor = Vendor::getInstance();
+    vendor->Register("Poule", &Poule::Create);
+    vendor->Register("Aigle", &Aigle::Create);
+    vendor->Register("Tigre", &Tigre::Create);
+
+    // Creation des animaux create(nombre, type, prix_de_vente);
+    vendor->create(10, "Poule", 20);
+    vendor->create(4, "Aigle",150);
+    vendor->create(5, "Tigre", 1000);
+
     Zoo *zoo = Zoo::getInstance("ZooTycoon");
     zoo->addMoney(10000.0);
     ui->lbl_zooName->setText(zoo->getName());

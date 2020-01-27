@@ -2,11 +2,11 @@
 #define POULE_H
 
 #include "animal.h"
+#include "templateanimal.h"
 
-
-class Poule : public Animal {
+class Poule : public TemplateAnimal<Poule> {
 public:
-    Poule(Animals *parent);
+    Poule();
 };
 
 #endif // POULE_H

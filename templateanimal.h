@@ -2,15 +2,16 @@
 #define TEMPLATEANIMAL_H
 
 #include "animal.h"
+#include "vendor.h"
 
 
 
 template <class T>
 class TemplateAnimal : public Animal {
   public:
-    static Animal* Create(Animals* parent){
-        Animal* animal = new T;
-        animal->setParent(parent);
+    static Animal* Create(){
+        Animal* animal = new T(nullptr);
+        animal->setParent(nullptr);
         return animal;
     }
 };
