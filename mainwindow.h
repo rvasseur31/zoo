@@ -13,12 +13,9 @@ QT_END_NAMESPACE
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-    int currentHabitatSelected;
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    int getCurrentHabitatSelected() const;
-    void setCurrentHabitatSelected(int value);
 
 private slots:
     void on_btn_updateZooName_clicked();
@@ -57,5 +54,8 @@ private:
     QStringListModel *getLogsForListView();
     void getHabitatsForListView();
     void updateHabitatDisplay();
+
+signals:
+    void setHabitatSelected(int habitatSelected);
 };
 #endif // MAINWINDOW_H

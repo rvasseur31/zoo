@@ -1,16 +1,19 @@
 #include "showanimalsinhabitat.h"
 #include "ui_showanimalsinhabitat.h"
-#include <QDebug>
+
+
+void ShowAnimalsInHabitat::signalSetHabitatSelected(int habitatSelected) {
+    this->habitatSelected = Zoo::getInstance()
+                        ->getHabitats()
+                        ->getHabitatList().at(habitatSelected);
+    qDebug() << __FUNCTION__ << this->habitatSelected->getCapacity();
+}
 
 ShowAnimalsInHabitat::ShowAnimalsInHabitat(MainWindow *parent) :
     QDialog(parent),
     ui(new Ui::ShowAnimalsInHabitat)
 {
     ui->setupUi(this);
-    qDebug() << Zoo::getInstance()
-            ->getHabitats()
-            ->getHabitatList().at(parent->getCurrentHabitatSelected())
-            ->getCapacity();
 }
 
 ShowAnimalsInHabitat::~ShowAnimalsInHabitat()
