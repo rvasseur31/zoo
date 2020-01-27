@@ -10,16 +10,6 @@
 #include <QInputDialog>
 #include <QMessageBox>
 
-int MainWindow::getCurrentHabitatSelected() const
-{
-    return currentHabitatSelected;
-}
-
-void MainWindow::setCurrentHabitatSelected(int value)
-{
-    currentHabitatSelected = value;
-}
-
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -252,7 +242,10 @@ void MainWindow::on_pushButtonDestroyHabitat_clicked()
 }
 
 void MainWindow::on_tableViewHabitat_cellDoubleClicked(int row) {
-    setCurrentHabitatSelected(row);
-    ShowAnimalsInHabitat animalsInHabitat(this);
-    animalsInHabitat.exec();
+    ShowAnimalsInHabitat *animalsInHabitat = new ShowAnimalsInHabitat(this);
+    QObject::connect(this, SIGNAL(setHabitatSelected(int)),
+                     animalsInHabitat, SLOT(signalSetHabitatSelected(int)));
+    emit setHabitatSelected(row);
+    animalsInHabitat->exec();
+
 }
