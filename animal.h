@@ -15,6 +15,7 @@ class Animal : public ZooObject
     int DaysBeforeBeingHungry;
     int litter;
     int sexualMaturity;
+    int gestationPeriod;
     int endOfBreeding;
     int childMortality;
     int lifeExpectancy;
@@ -57,6 +58,8 @@ public:
     void setSellPrice(double value);
     QString getType() const;
     void setType(const QString &value);
+    int getGestationPeriod() const;
+    void setGestationPeriod(int value);
 };
 
 #endif // ANIMAL_H

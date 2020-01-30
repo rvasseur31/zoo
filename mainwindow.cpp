@@ -1,8 +1,10 @@
 #include "aigle.h"
+#include "aiglefemmelle.h"
 #include "mainwindow.h"
 #include "poule.h"
 #include "showanimalsinhabitat.h"
 #include "tigre.h"
+#include "tigrefemmelle.h"
 #include "ui_mainwindow.h"
 #include "vendor.h"
 #include "zoo.h"
@@ -16,9 +18,12 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     Vendor *vendor = Vendor::getInstance();
+    vendor->Register("Coq", &Coq::Create);
     vendor->Register("Poule", &Poule::Create);
     vendor->Register("Aigle", &Aigle::Create);
+    vendor->Register("Aigle Femmelle", &AigleFemmelle::Create);
     vendor->Register("Tigre", &Tigre::Create);
+    vendor->Register("Tigre Femmelle", &TigreFemmelle::Create);
 
     // Creation des animaux create(nombre, type, prix_de_vente);
     vendor->create(10, "Poule", 20);

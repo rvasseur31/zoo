@@ -8,11 +8,7 @@ class Aigle : public TemplateAnimal<Aigle> {
 
 
 public:
-    Aigle(Animals *parent);
-
-
-
-
+    Aigle();
 };
 
 #endif // AIGLE_H

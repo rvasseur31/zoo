@@ -1,10 +1,9 @@
 #ifndef POULE_H
 #define POULE_H
 
-#include "animal.h"
-#include "templateanimal.h"
+#include "coq.h"
 
-class Poule : public TemplateAnimal<Poule> {
+class Poule : public Coq {
 public:
     Poule();
 };

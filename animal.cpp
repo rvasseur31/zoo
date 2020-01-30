@@ -131,6 +131,16 @@ void Animal::setType(const QString &value)
     type = value;
 }
 
+int Animal::getGestationPeriod() const
+{
+    return gestationPeriod;
+}
+
+void Animal::setGestationPeriod(int value)
+{
+    gestationPeriod = value;
+}
+
 Animal::Animal(Animals* parent)
     : ZooObject("Un animal de l'habitat")
     , parent(parent)

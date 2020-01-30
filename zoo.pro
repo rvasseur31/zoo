@@ -17,9 +17,11 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     aigle.cpp \
+    aiglefemmelle.cpp \
     animal.cpp \
     animals.cpp \
     animaltype.cpp \
+    coq.cpp \
     habitat.cpp \
     habitataigle.cpp \
     habitatpoule.cpp \
@@ -31,6 +33,7 @@ SOURCES += \
     showanimalsinhabitat.cpp \
     templateanimal.cpp \
     tigre.cpp \
+    tigrefemmelle.cpp \
     vendor.cpp \
     zoo.cpp \
     zoobudget.cpp \
@@ -42,10 +45,12 @@ SOURCES += \
 HEADERS += \
     FoodType.h \
     aigle.h \
+    aiglefemmelle.h \
     animal.h \
     animals.h \
     animaltype.h \
     animaltype.h \
+    coq.h \
     habitat.h \
     habitataigle.h \
     habitatpoule.h \
@@ -56,6 +61,7 @@ HEADERS += \
     showanimalsinhabitat.h \
     templateanimal.h \
     tigre.h \
+    tigrefemmelle.h \
     vendor.h \
     zoo.h \
     zoobudget.h \
