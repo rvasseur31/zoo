@@ -1,6 +1,8 @@
 ### Tâche à faire
 
 - [x] Création d'un signal lors de la selection d'un habitat
+- [x] Convertir class en JSON
+- [ ] Design pattern Decorateur pour les animaux.
 - [ ] Ajout d'animaux dans les habitats
 - [ ] Visualisation des animaux dans un habitat
 - [ ] Ajout l'option d'ajouter plusieurs habitats en même temps

@@ -4,6 +4,11 @@
 #include "zooobject.h"
 #include "FoodType.h"
 
+#include <QJsonDocument>
+#include <QJsonValue>
+#include <QJsonArray>
+#include <QJsonObject>
+
 class Animals;
 class Habitat;
 
@@ -12,7 +17,7 @@ class Animal : public ZooObject
     bool isFemale;
     FoodType foodType;
     double amountOfFoodPerDay;
-    int DaysBeforeBeingHungry;
+    int daysBeforeBeingHungry;
     int litter;
     int sexualMaturity;
     int gestationPeriod;
@@ -60,6 +65,7 @@ public:
     void setType(const QString &value);
     int getGestationPeriod() const;
     void setGestationPeriod(int value);
+    QJsonDocument toJson();
 };
 
 #endif // ANIMAL_H

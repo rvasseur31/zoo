@@ -43,12 +43,12 @@ void Animal::setAmountOfFoodPerDay(double value)
 
 int Animal::getDaysBeforeBeingHungry() const
 {
-    return DaysBeforeBeingHungry;
+    return daysBeforeBeingHungry;
 }
 
 void Animal::setDaysBeforeBeingHungry(int value)
 {
-    DaysBeforeBeingHungry = value;
+    daysBeforeBeingHungry = value;
 }
 
 int Animal::getLitter() const
@@ -139,6 +139,27 @@ int Animal::getGestationPeriod() const
 void Animal::setGestationPeriod(int value)
 {
     gestationPeriod = value;
+}
+
+QJsonDocument Animal::toJson() {
+    QJsonObject animalObject;
+    animalObject.insert("isFemale", getIsFemale());
+    animalObject.insert("FoodType", getFoodType());
+    animalObject.insert("amountOfFoodPerDay", getAmountOfFoodPerDay());
+    animalObject.insert("daysBeforeBeingHungry", getDaysBeforeBeingHungry());
+    animalObject.insert("litter", getLitter());
+    animalObject.insert("sexualMaturity", getSexualMaturity());
+    animalObject.insert("gestationPeriod", getGestationPeriod());
+    animalObject.insert("endOfBreeding", getEndOfBreeding());
+    animalObject.insert("childMortality", getChildMortality());
+    animalObject.insert("lifeExpectancy", getLifeExpectancy());
+    animalObject.insert("buyPrice", getBuyPrice());
+    animalObject.insert("sellPrice", getSellPrice());
+    animalObject.insert("type", getType());
+
+    QJsonDocument doc(animalObject);
+    //qDebug() << doc.toJson();
+    return doc;
 }
 
 Animal::Animal(Animals* parent)
